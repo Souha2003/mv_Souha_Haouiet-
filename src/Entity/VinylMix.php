@@ -112,8 +112,17 @@ class VinylMix
         return $this;
     }
 
+    public function upVote(): void
+    {
+        $this->votes++;
+    }
+    public function downVote(): void
+    {
+        $this->votes--;
+    } 
     public function getVotesString(): string
     {
+        
         $prefix = ($this->votes === 0) ? '' : (($this->votes >= 0) ? '+' : '-');
         return sprintf('%s %d', $prefix, abs($this->votes));
     }
@@ -127,3 +136,4 @@ class VinylMix
         );
     }
 }
+

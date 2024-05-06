@@ -53,6 +53,12 @@ if ($direction === 'up') {
 dd($mix);
 $entityManager->flush();
 
+$entityManager->flush();
+$this->addFlash('success', 'Vote counted!');
+
+}
+}
+
 return $this->redirectToRoute('app_mix_show', [
     'id' => $mix->getId(),
 ]);
