@@ -42,8 +42,8 @@ public function vote(VinylMix $mix): Response
     dd($mix);
 }
 
-public function vote(VinylMix $mix, Request $request): Response
-    {
+public function vote(VinylMix $mix, Request $request, EntityManagerInterface $entityManager): Response
+{
 $direction = $request->request->get('direction', 'up');
 if ($direction === 'up') {
     $mix->setVotes($mix->getVotes() + 1);
@@ -51,4 +51,9 @@ if ($direction === 'up') {
     $mix->setVotes($mix->getVotes() - 1);
 }
 dd($mix);
+$entityManager->flush();
+
+return $this->redirectToRoute('app_mix_show', [
+    'id' => $mix->getId(),
+]);
 }
